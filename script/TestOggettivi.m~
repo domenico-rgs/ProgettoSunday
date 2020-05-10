@@ -1,0 +1,6 @@
+function [FPE,AIC,MDL] = Testoggettivi(n, q, SSR)
+FPE = ((n+q)/(n-q))*SSR;
+AIC = 2*q/n + log(SSR);
+MDL = log(n)*q/n + log(SSR);
+end
+
