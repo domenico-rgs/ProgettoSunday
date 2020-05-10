@@ -1,6 +1,6 @@
 # Progetto IMAD
 
-Predittore della domenica
+## Predittore della domenica
 Il file Excel contiene due anni di dati orari, strutturati come segue:
 * 1° colonna: giorno dell’anno [1, ..., 365];
 * 2° colonna: ora del giorno [1, ..., 24];
