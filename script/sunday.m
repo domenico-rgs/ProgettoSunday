@@ -14,6 +14,9 @@ x1=dati_domenica.giorno_anno;
 x2 = dati_domenica.ora_giorno;
 y=dati_domenica.dati;
 
+y_dt = detrend(y,1);
+
+y=y_dt;
 x1_ext = [1:1:365]';
 x2_ext = [1:24]';
 [X1,X2] = meshgrid(x1_ext, x2_ext);
@@ -31,8 +34,11 @@ y_val = y(1249:2496,1);
 nVal =length(y_val);
 
 %% Visualizzazione dati
+x1_val_plot = x1(1249:2496,1) + 365;
 figure
 plot3(x1_id,x2_id,y_id,'bo')
+hold on
+plot3(x1_val_plot,x2_val,y_val, 'rx')
 grid on
 title('Carico elettrico italiano di domenica')
 xlabel('Giorno dell''anno')
