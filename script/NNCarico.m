@@ -5,12 +5,13 @@ close all
 load_dataset
 
 %% Neural Network
-setdemorandstream(491218382)
+setdemorandstream(491218342)
 x = {x1_id';x2_id'};
 t = y_id';
 net = feedforwardnet(10);
 net.name='Skynet';
-net.numinputs = 2;
+net.numInputs = 2;
+net.trainParam.max_fail = 10;
 net.inputConnect = [1 1; 0 0];
 net = configure(net,x);
 [net, tr] = train(net,x,t);
@@ -24,9 +25,9 @@ size(y')
 perf = perform(net,y,y_val)
  
 figure
-plot3(x1_val,x2_val,y,'rx')
+plot3(x1_val,x2_val,y+m,'rx')
 hold on
-plot3(x1_val, x2_val, y_val, 'bo');
+plot3(x1_val, x2_val, y_val+trend_2, 'bo');
 grid on
 title('Carico elettrico italiano di Domenica')
 xlabel('Giorno dell''anno')
