@@ -21,13 +21,33 @@ x2_ext = [1:24]';
 %Dati identificazione [primo anno]
 x1_id = x1(1:1248,1);
 x2_id = x2(1:1248,1);
-trend_1=trend(1:1248,1);
 y_id = y1(1:1248,1);
+
+x1_id(289:1:312) = [ ]; % rimuovo outlier giorno 90
+x2_id(289:1:312) = [ ];
+y_id(289:1:312) = [ ];
+
+x1_id(673:1:696) = [ ]; %rimuovo outlier giorno 209
+x2_id(673:1:696) = [ ];
+y_id(673:1:696) = [ ];
+
+trend_1=trend(1:1200,1);
 n=length(y_id);
 
 %Dati validazione [secondo anno]
-x1_val = x1(1249:2496,1);
-x2_val = x2(1249:2496,1);
-trend_2=trend(1249:2496,1);
-y_val = y1(1249:2496,1);
+x1_val = x1(1249:2448,1);
+x2_val = x2(1249:2448,1);
+trend_2=trend(1249:2448,1);
+y_val = y1(1249:2448,1);
 nVal =length(y_val);
+
+%% Visualizzazione dati
+figure
+plot3(x1_id,x2_id,y_id,'bo')
+hold on
+plot3(x1_val+365,x2_val,y_val, 'rx')
+grid on
+title('Carico elettrico italiano di domenica')
+xlabel('Giorno dell''anno')
+ylabel('Ora del giorno')
+zlabel('Consumo elettrico')

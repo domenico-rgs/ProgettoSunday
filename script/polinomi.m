@@ -4,17 +4,6 @@ close all
 
 load_dataset
 
-%% Visualizzazione dati
-x1_val_plot = x1(1249:2496,1) + 365;
-figure
-plot3(x1_id,x2_id,y_id,'bo')
-hold on
-plot3(x1_val_plot,x2_val,y_val, 'rx')
-grid on
-title('Carico elettrico italiano di domenica')
-xlabel('Giorno dell''anno')
-ylabel('Ora del giorno')
-zlabel('Consumo elettrico')
 %% Modello bidimensionale (polinomio terzo grado)
 phi_B=[ones(n,1) x1_id x2_id x1_id.^2 x2_id.^2 x1_id.*x2_id x1_id.^3 x2_id.^3 (x1_id.^2).*x2_id];
 phi_B_ext = [ones(length(X1(:)),1) X1(:) X2(:) X1(:).^2 X2(:).^2 X1(:).*X2(:) X1(:).^3 X2(:).^3 (X1(:).^2).*X2(:)];
