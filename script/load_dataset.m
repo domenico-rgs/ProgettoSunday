@@ -51,3 +51,10 @@ title('Carico elettrico italiano di domenica')
 xlabel('Giorno dell''anno')
 ylabel('Ora del giorno')
 zlabel('Consumo elettrico')
+
+figure
+x1_s = [1:1:2496]';
+plot(x1_s,y)
+grid on
+title('Carico elettrico italiano di domenica')
+ylabel('Consumo elettrico')
