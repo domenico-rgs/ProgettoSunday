@@ -14,6 +14,22 @@ y1=detrend(y,1);
 trend = y-y1;
 m = mean(trend);
 
+%Asse X con date complete 
+for i = 6:7:730
+    for q = 1:24
+       axis_X(q,i) = (datetime([2018,01,00]) + caldays(i));
+    end
+    
+end
+axis_X = rmmissing(axis_X, 2);
+axis_X = reshape(axis_X,[],1);
+axis_X_id = axis_X(1:1248,1);
+axis_X_id(289:1:312) = []; %rimuovo outlier giorno 90
+axis_X_id(673:1:696) = []; %rimuovo outlier giorno 209
+axis_X_val = axis_X(1249:2448,1);
+
+
+
 x1_ext = [1:1:365]';
 x2_ext = [1:24]';
 [X1,X2] = meshgrid(x1_ext, x2_ext);
@@ -43,17 +59,19 @@ nVal =length(y_val);
 
 %% Visualizzazione dati
 figure
-plot3(x1_id,x2_id,y_id,'bo')
+plot3(axis_X_id,x2_id,y_id,'bo')
 hold on
-plot3(x1_val+365,x2_val,y_val, 'rx')
+plot3(axis_X_val,x2_val,y_val, 'rx')
 grid on
 title('Carico elettrico italiano di domenica')
 xlabel('Giorno dell''anno')
 ylabel('Ora del giorno')
 zlabel('Consumo elettrico')
+legend('dati di identificazione', 'dati di validazione')
+
 
 figure
-x1_s = [1:1:2496]';
+x1_s = axis_X(1:1:2496);
 plot(x1_s,y)
 grid on
 title('Carico elettrico italiano di domenica')

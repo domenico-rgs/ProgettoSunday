@@ -6,4 +6,6 @@ plot3(x1, x2, y, 'o');
 xlabel('Giorno dell''anno')
 ylabel('Ora del giorno')
 zlabel('Consumo elettrico')
+colorbar
+colormap('default')
 end
