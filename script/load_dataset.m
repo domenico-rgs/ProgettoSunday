@@ -24,11 +24,7 @@ end
 axis_X = rmmissing(axis_X, 2);
 axis_X = reshape(axis_X,[],1);
 axis_X_id = axis_X(1:1248,1);
-axis_X_id(289:1:312) = []; %rimuovo outlier giorno 90
-axis_X_id(673:1:696) = []; %rimuovo outlier giorno 209
-axis_X_val = axis_X(1249:2448,1);
-
-
+axis_X_val = axis_X(1249:2496,1);
 
 x1_ext = [1:1:365]';
 x2_ext = [1:24]';
@@ -39,31 +35,36 @@ x1_id = x1(1:1248,1);
 x2_id = x2(1:1248,1);
 y_id = y_dt(1:1248,1);
 
-x1_id(289:1:312) = [ ]; % rimuovo outlier giorno 90
-x2_id(289:1:312) = [ ];
-y_id(289:1:312) = [ ];
-
-x1_id(673:1:696) = [ ]; %rimuovo outlier giorno 209
-x2_id(673:1:696) = [ ];
-y_id(673:1:696) = [ ];
-
-trend_1=trend(1:1200,1);
+trend_1=trend(1:1248,1);
 n=length(y_id);
 
 %Dati validazione [secondo anno]
-x1_val = x1(1249:2448,1);
-x2_val = x2(1249:2448,1);
-trend_2=trend(1249:2448,1);
-y_val = y_dt(1249:2448,1);
+x1_val = x1(1249:2496,1);
+x2_val = x2(1249:2496,1);
+trend_2=trend(1249:2496,1);
+y_val = y_dt(1249:2496,1);
 nVal =length(y_val);
 
 %% Visualizzazione dati
+% con trend
+figure
+plot3(axis_X_id,x2_id,y(1:1248,1),'bo')
+hold on
+plot3(axis_X_val,x2_val,y(1249:2496,1), 'rx')
+grid on
+title('Carico elettrico italiano di domenica - with trend')
+xlabel('Giorno dell''anno')
+ylabel('Ora del giorno')
+zlabel('Consumo elettrico')
+legend('dati di identificazione', 'dati di validazione')
+
+% Detrendizzati
 figure
 plot3(axis_X_id,x2_id,y_id,'bo')
 hold on
 plot3(axis_X_val,x2_val,y_val, 'rx')
 grid on
-title('Carico elettrico italiano di domenica')
+title('Carico elettrico italiano di domenica - dati detrend')
 xlabel('Giorno dell''anno')
 ylabel('Ora del giorno')
 zlabel('Consumo elettrico')
@@ -75,5 +76,12 @@ figure
 x1_s = axis_X(1:1:2496);
 plot(x1_s,y)
 grid on
-title('Carico elettrico italiano di domenica')
+title('Plot dati giornaliero annuale')
 ylabel('Consumo elettrico')
+
+% %2D ore
+% figure
+% plot(x1_s,y)
+% grid on
+% title('Plot dati orario annuale')
+% ylabel('Consumo elettrico')

@@ -21,14 +21,14 @@ nntraintool
 % Validazione
 validation=[x1_val x2_val];
 y = net(validation');
-perf = perform(net,y_val,y)
- 
+mse=mse(net,t,y)
+
 figure
 plot3(x1_val,x2_val,y+m,'rx')
 hold on
 plot3(x1_val, x2_val, y_val+trend_2, 'bo');
 grid on
-title('Carico elettrico italiano di Domenica')
+title('Validazione rete MLP')
 xlabel('Giorno dell''anno')
 ylabel('Ora del giorno')
 zlabel('Consumo elettrico')
@@ -42,6 +42,7 @@ plot(x2_ext, carico+m, '-m')
 hold on
 plot(x2_ext, y_val(385:1:408)+m, '-b')
 grid on
+title('Validazione giorno 201')
 legend('previsione','effettivo')
 
 % %% Neural Network RB

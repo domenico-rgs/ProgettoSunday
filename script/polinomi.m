@@ -4,6 +4,13 @@ close all
 
 load_dataset
 
+%Normalizzazione 
+x1_id=x1_id/365;
+x2_id=x2_id/24;
+x1_val=x1_val/365;
+x2_val=x2_val/24;
+[X1,X2] = meshgrid(linspace(0,1,365), linspace(0,1,24));
+
 %% Modello bidimensionale (polinomio terzo grado)
 phi_B=[ones(n,1) x1_id x2_id x1_id.^2 x2_id.^2 x1_id.*x2_id x1_id.^3 x2_id.^3 (x1_id.^2).*x2_id];
 phi_B_ext = [ones(length(X1(:)),1) X1(:) X2(:) X1(:).^2 X2(:).^2 X1(:).*X2(:) X1(:).^3 X2(:).^3 (X1(:).^2).*X2(:)];
@@ -11,7 +18,7 @@ phi_B_ext = [ones(length(X1(:)),1) X1(:) X2(:) X1(:).^2 X2(:).^2 X1(:).*X2(:) X1
 [theta_B, std_theta_B, q_B, y_hat_B, epsilon_B, SSR_B, y_hat_B_ext, y_hat_B_ext_mat] = identificazioneModello(phi_B, phi_B_ext, X1, y_id);
 
 % Plot Dati + stima (terzo grado)
-stampaModello(X1,X2,y_hat_B_ext_mat+m, x1_id, x2_id, (y_id+trend_1))
+stampaModello('Modello III grado',X1,X2,y_hat_B_ext_mat+m, x1_id, x2_id, (y_id+trend_1))
 
 %% Modello bidimensionale (polinomio di quarto grado)
 phi_C=[ones(n,1) x1_id x2_id x1_id.^2 x2_id.^2 x1_id.*x2_id x1_id.^3 x2_id.^3 (x1_id.^2).*x2_id x1_id.*(x2_id.^2) x1_id.^4 x2_id.^4 (x1_id.^2).*(x2_id.^2) (x1_id.^3).*x2_id x1_id.*(x2_id.^3)];
@@ -21,7 +28,7 @@ phi_C_ext = [ones(length(X1(:)),1) X1(:) X2(:) X1(:).^2 X2(:).^2 X1(:).*X2(:) X1
 [theta_C, std_theta_C, q_C, y_hat_C, epsilon_C, SSR_C, y_hat_C_ext, y_hat_C_ext_mat] = identificazioneModello(phi_C, phi_C_ext, X1, y_id);
 
 % Plot Dati + stima (quarto grado)
-stampaModello(X1,X2,y_hat_C_ext_mat+m, x1_id, x2_id, (y_id+trend_1))
+stampaModello('Modello IV grado',X1,X2,y_hat_C_ext_mat+m, x1_id, x2_id, (y_id+trend_1))
 
 %% Modello bidimensionale (polinomio di quinto grado)
 phi_D=[ones(n,1) x1_id x2_id x1_id.^2 x2_id.^2 x1_id.*x2_id x1_id.^3 x2_id.^3 (x1_id.^2).*x2_id x1_id.*(x2_id.^2) x1_id.^4 x2_id.^4 (x1_id.^2).*(x2_id.^2) (x1_id.^3).*x2_id x1_id.*(x2_id.^3) ...
@@ -32,7 +39,7 @@ phi_D_ext = [ones(length(X1(:)),1) X1(:) X2(:) X1(:).^2 X2(:).^2 X1(:).*X2(:) X1
 [theta_D, std_theta_D, q_D, y_hat_D, epsilon_D, SSR_D, y_hat_D_ext, y_hat_D_ext_mat] = identificazioneModello(phi_D, phi_D_ext, X1, y_id);
 
 % Plot Dati + stima (quinto grado)
-stampaModello(X1,X2,y_hat_D_ext_mat+m, x1_id, x2_id, (y_id+trend_1))
+stampaModello('Modello V grado',X1,X2,y_hat_D_ext_mat+m, x1_id, x2_id, (y_id+trend_1))
 
 
 %% Modello bidimensionale (polinomio di sesto grado)
@@ -46,7 +53,7 @@ phi_E_ext = [ones(length(X1(:)),1) X1(:) X2(:) X1(:).^2 X2(:).^2 X1(:).*X2(:) X1
 [theta_E, std_theta_E, q_E, y_hat_E, epsilon_E, SSR_E, y_hat_E_ext, y_hat_E_ext_mat] = identificazioneModello(phi_E, phi_E_ext, X1, y_id);
 
 % Plot Dati + stima (quinto grado)
-stampaModello(X1,X2,y_hat_E_ext_mat+m, x1_id, x2_id, (y_id+trend_1))
+stampaModello('Modello VI grado',X1,X2,y_hat_E_ext_mat+m, x1_id, x2_id, (y_id+trend_1))
 %% TEST F
 alpha = 0.05;
 
@@ -80,7 +87,7 @@ plot3(x1_val, x2_val, y_val+trend_2, 'rx');
 hold on
 mesh(X1, X2, y_hat_D_ext_mat+m)
 grid on
-title('Carico elettrico italiano di Domenica')
+title('Crossvalidazione')
 xlabel('Giorno dell''anno')
 ylabel('Ora del giorno')
 zlabel('Consumo elettrico')

@@ -1,8 +1,9 @@
-function stampaModello(G,P,curva_matrix, x1, x2, y)
+function stampaModello(titolo,O,G,curva_matrix, x1, x2, y)
 figure
-mesh(G,P,curva_matrix);
+mesh(O,G,curva_matrix);
 hold on
 plot3(x1, x2, y, 'o');
+title(titolo)
 xlabel('Giorno dell''anno')
 ylabel('Ora del giorno')
 zlabel('Consumo elettrico')
