@@ -8,11 +8,12 @@ load_dataset
 setdemorandstream(491218342)
 x = {x1_id';x2_id'};
 t = y_id';
-net = feedforwardnet(10);
+net = feedforwardnet([20 18 15]);
 net.name='Skynet';
 net.numInputs = 2;
-net.trainParam.max_fail = 6;
-net.inputConnect = [1 1; 0 0];
+net.numLayers = 4;
+net.trainParam.max_fail = 10;
+net.inputConnect = [1 1; 0 0; 0 0; 0 0];
 net = configure(net,x);
 [net, tr] = train(net,x,t);
 nntraintool
@@ -34,12 +35,12 @@ zlabel('Consumo elettrico')
 legend('dati della rete', 'dati da validare')
 
 % Giorno a caso
-data = [x1_val(745:1:768) x2_ext]; % giorno 201
+data = [x1_val(385:1:408) x2_ext]; % giorno 201
 carico = net(data');
 figure
 plot(x2_ext, carico+m, '-m')
 hold on
-plot(x2_ext, y_val(745:1:768)+m, '-b')
+plot(x2_ext, y_val(385:1:408)+m, '-b')
 grid on
 legend('previsione','effettivo')
 
