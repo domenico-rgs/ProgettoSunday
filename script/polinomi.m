@@ -85,6 +85,8 @@ xlabel('Giorno dell''anno')
 ylabel('Ora del giorno')
 zlabel('Consumo elettrico')
 legend('dati di identificazione', 'dati di validazione')
+colorbar
+colormap('default')
 
 %Terzo grado
 phi_B_Val=[ones(n,1) x1_val x2_val x1_val.^2 x2_val.^2 x1_val.*x2_val x1_val.^3 x2_val.^3 (x1_val.^2).*x2_val];
