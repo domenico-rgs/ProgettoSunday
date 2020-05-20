@@ -8,5 +8,4 @@ Il file Excel contiene due anni di dati orari, strutturati come segue:
 * 4° colonna: serie temporale.
 
 ## Obiettivo: 
-Identificare un modello per il valore della serie temporale della domenica in funzione del gior-
-no dell’anno e dell’ora.
+Identificare un modello per il valore della serie temporale della domenica in funzione del giorno dell’anno e dell’ora.
