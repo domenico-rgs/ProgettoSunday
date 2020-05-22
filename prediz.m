@@ -1,10 +1,10 @@
 function [d_hat] = prediz(h,d)
+p=26.2354; %costante di trend
 
-phi=[1 sin(2*pi*d/365) cos(2*pi*d/365) sin(2*pi*2*d/365) cos(2*pi*2*d/365) sin(2*pi*3*d/365) cos(2*pi*3*d/365)...
-    sin(2*pi*h/24) cos(2*pi*h/24) sin(2*pi*2*h/24) cos(2*pi*2*h/24) sin(2*pi*3*h/24) cos(2*pi*3*h/24)];
-theta=load('./script/theta.mat').theta_D;
-m=load('./script/m.mat').m;
+if exist('skynet','var')==0
+    load('skynet.mat','net')
+end
 
-d_hat = phi * theta + m;
+d_hat=net([d h]')+p; %come aggiungo la rete ?
 end
 
