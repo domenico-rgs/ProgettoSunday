@@ -30,9 +30,6 @@ phi_D_ext = [ones(length(X1(:)),1) sin(2*pi*X1(:)/365) cos(2*pi*X1(:)/365) sin(2
 
 [theta_D, std_theta_D, q_D, y_hat_D, epsilon_D, SSR_D, y_hat_D_ext, y_hat_D_ext_mat] = identificazioneModello(phi_D, phi_D_ext, X1, y_id_dt);
 
-
-save('theta.mat','theta_D');
-
 % Plot Dati + stima 
 stampaModello('Modello 3 armoniche',X1,X2,y_hat_D_ext_mat+p, x1_id, x2_id, y_id_dt+p)
 
@@ -51,11 +48,7 @@ stampaModello('Modello 4 armoniche',X1,X2,y_hat_E_ext_mat+p, x1_id, x2_id, y_id_
 %% TEST F
 alpha = 0.05;
 
-<<<<<<< HEAD:script/SFPolinomi.m
-% Polinomio quarto vs terzo
-=======
 % Seconda armonica vs prima armonica
->>>>>>> 9d4496b7f37d8af27afc2c563376cce7aabd034c:script/Fourier.m
 [f_alpha1,f1] = TestF(alpha,n,q_C,SSR_B, SSR_C);
 
 % Terza armonica vs seconda armonica
