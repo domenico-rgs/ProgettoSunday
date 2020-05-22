@@ -8,7 +8,7 @@ load_dataset
 setdemorandstream(491218342)
 x = {x1_id';x2_id'};
 t = y_id_dt';
-net = feedforwardnet([15 20]);
+net = feedforwardnet([23]);
 net.name='Skynet';
 net.numInputs = 2;
 net.numLayers = 3;
@@ -46,7 +46,7 @@ title('Validazione giorno 201')
 legend('previsione','effettivo')
 
 %% Neural Network RB
-net = newrb(x,t,0.0,1,300);
+net = newrb(x,t,0.0,2,350);
 net.name='Will';
 y = sim(net,validation')+p;
 SSR_RB=sum((y_val_dt+p-y').^2)
