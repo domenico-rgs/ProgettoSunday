@@ -18,6 +18,7 @@ net.divideParam.testRatio  = 0.0; % test set [%]
 net.inputConnect = [1 1; 0 0];
 net = configure(net,x);
 [net, tr] = train(net,x,t);
+view(net)
 nntraintool
 
 % Validazione
