@@ -51,7 +51,7 @@ stampaModello('Modello 4 armoniche',X1,X2,y_hat_E_ext_mat+p, x1_id, x2_id, y_id_
 %% TEST F
 alpha = 0.05;
 
-% Polinomio quarto vs primo terzo
+% Polinomio quarto vs terzo
 [f_alpha1,f1] = TestF(alpha,n,q_C,SSR_B, SSR_C);
 
 % Polinomio quinto vs quarto

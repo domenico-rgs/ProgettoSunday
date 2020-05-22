@@ -36,25 +36,25 @@ nVal = length(y_val);
 figure
 plot3(x1_id,x2_id,y_id,'bo')
 hold on
-plot3(x1_val+365,x2_val,y_val, 'rx')
+plot3(x1_val+365,x2_val,y_val, 'ro')
 grid on
-title('Carico elettrico italiano di Domenica - with trend')
+title('Carico elettrico italiano di Domenica')
 xlabel('Giorno dell''anno')
 ylabel('Ora del giorno')
 zlabel('Consumo elettrico')
-legend('Dati di identificazione', 'Dati di validazione')
+legend('Dati del primo anno', 'Dati del secondo anno')
 
 % Detrendizzati
 figure
 plot3(x1_id,x2_id,y_id_dt+p,'bo')
 hold on
-plot3(x1_val+365,x2_val,y_val_dt+p, 'rx')
+plot3(x1_val+365,x2_val,y_val_dt+p, 'ro')
 grid on
-title('Carico elettrico italiano di Domenica - without trend')
+title('Carico elettrico italiano di Domenica - senza trend')
 xlabel('Giorno dell''anno')
 ylabel('Ora del giorno')
 zlabel('Consumo elettrico')
-legend('Dati di identificazione', 'Dati di validazione')
+legend('Dati del primo anno', 'Dati del secondo anno')
 
 
 %2D giorni
