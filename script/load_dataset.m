@@ -8,11 +8,18 @@ dati=readtable('../dati/caricoITAhour.xlsx', opts);
 dati_domenica = dati(dati.giorno_settimana==1&not(isnan(dati.dati)),:);
 x1=dati_domenica.giorno_anno;
 x2=dati_domenica.ora_giorno;
+
+%Dati consumo di Domenica su due anni
 y=dati_domenica.dati;
 
+%Dati consumo giornaliero su due anni
+dati_totali = dati.dati;
+
+%Detrend
 y_dt=detrend(y,1);
 p=polyfit(linspace(1,1,2496)',y-y_dt,0);
 
+%Griglia
 x1_ext = [1:1:365]';
 x2_ext = [1:24]';
 [X1,X2] = meshgrid(x1_ext, x2_ext);
@@ -32,7 +39,7 @@ y_val_dt = y_dt(1249:2496,1);
 nVal = length(y_val);
 
 %% Visualizzazione dati
-% con trend
+%Con trend
 figure
 plot3(x1_id,x2_id,y_id,'bo')
 hold on
@@ -57,33 +64,27 @@ zlabel('Consumo elettrico')
 legend('Dati del primo anno', 'Dati del secondo anno')
 
 
-%2D giorni
-figure
-x1_s = [1:0.2881:720]';
-plot(x1_s,y)
-grid on
-title('Consumo elettrico italiano di Domenica - 2D')
-ylabel('Consumo elettrico')
-xlabel('Giorno dell''anno')
 
-%2D ore
-%figure
-%xl_s2 = [1:1:2496];
-%plot(x1_s2,y)
-%grid on
-%title('Plot dati orario annuale')
-%ylabel('Consumo elettrico')
-
-% Media carico elettrico di Domenica
-[dati_mean_id] = consumoMedioGiornaliero(y_id);
-[dati_mean_val] = consumoMedioGiornaliero(y_val);
+% Media carico elettrico Domenica
+[dati_mean_id] = consumoMedioGiornaliero(y_id, 52);
+[dati_mean_val] = consumoMedioGiornaliero(y_val, 52);
 figure
 xl_s = [1:1:52];
 plot(xl_s, dati_mean_id)
 hold on
 plot(xl_s, dati_mean_val)
 grid on
-title('Conusmo elettrico medio di Domenica')
+title('Consumo elettrico medio di Domenica')
 ylabel('Consumo elettrico')
 xlabel('Domenica dell''anno')
 legend('Dati identificazione', 'Dati validazione')
+
+% Media carico elettrico giornaliero
+[dati_mean_tot] = consumoMedioGiornaliero(dati_totali, 730);
+figure
+xl_s = [1:1:730];
+plot(xl_s, dati_mean_tot)
+grid on
+title('Consumo elettrico medio giornaliero')
+ylabel('Consumo elettrico')
+xlabel('Giorno dell''anno')
