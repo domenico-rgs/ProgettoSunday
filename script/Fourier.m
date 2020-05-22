@@ -30,9 +30,6 @@ phi_D_ext = [ones(length(X1(:)),1) sin(2*pi*X1(:)/365) cos(2*pi*X1(:)/365) sin(2
 
 [theta_D, std_theta_D, q_D, y_hat_D, epsilon_D, SSR_D, y_hat_D_ext, y_hat_D_ext_mat] = identificazioneModello(phi_D, phi_D_ext, X1, y_id_dt);
 
-
-save('theta.mat','theta_D');
-
 % Plot Dati + stima 
 stampaModello('Modello 3 armoniche',X1,X2,y_hat_D_ext_mat+p, x1_id, x2_id, y_id_dt+p)
 
