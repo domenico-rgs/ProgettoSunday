@@ -8,11 +8,7 @@ load_dataset
 setdemorandstream(491218342)
 x = {x1_id';x2_id'};
 t = y_id_dt';
-<<<<<<< HEAD
 net = feedforwardnet([23]);
-=======
-net = feedforwardnet([25]);
->>>>>>> 05f3bc8eeca13d4f66eb6d3d743a4847b2a2e072
 net.name='Skynet';
 net.numInputs = 2;
 net.numLayers = 2;
@@ -51,7 +47,7 @@ grid on
 title('Validazione giorno 201')
 legend('previsione','effettivo')
 
-<<<<<<< HEAD
+
 %% Neural Network RB
 net = newrb(x,t,0.0,2,350);
 net.name='Will';
@@ -80,7 +76,7 @@ plot(x2_ext, y_val_dt(385:1:408)+p, '-b')
 grid on
 title('Validazione giorno 201')
 legend('previsione','effettivo')
-=======
+
 % %% Neural Network RB
 % net = newrb(x,t,0.0,2,350);
 % net.name='Will';
@@ -109,4 +105,3 @@ legend('previsione','effettivo')
 % grid on
 % title('Validazione giorno 201')
 % legend('previsione','effettivo')
->>>>>>> 05f3bc8eeca13d4f66eb6d3d743a4847b2a2e072
