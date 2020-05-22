@@ -21,7 +21,7 @@ nntraintool
 % Validazione
 validation=[x1_val x2_val];
 y = net(validation')+p;
-mse_mlp=mean((y_val_dt+p-y').^2); %non sono sicuro si calcoli così
+SSR_MLP=sum((y_val_dt+p-y').^2)
 
 figure
 plot3(x1_val,x2_val,y,'rx')
@@ -49,7 +49,7 @@ legend('previsione','effettivo')
 net = newrb(x,t,0.0,3,300);
 net.name='Will';
 y = sim(net,validation')+p;
-mse_rb=mean((y_val_dt+p-y').^2); %non sono sicuro si calcoli così
+SSR_RB=sum((y_val_dt+p-y').^2)
 
 % Validazione
 figure
