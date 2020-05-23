@@ -276,7 +276,7 @@ plot3(x1_id,x2_id,y_id_dt+p,'bo')
 hold on
 plot3(x1_val, x2_val, y_val_dt+p, 'rx');
 hold on
-mesh(X1, X2, y_hat_D_ext_mat+p)
+mesh(X1, X2, y_hat_N_ext_mat+p)
 grid on
 title('Crossvalidazione')
 xlabel('Giorno dell''anno')
