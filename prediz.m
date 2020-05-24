@@ -9,7 +9,7 @@ else
      load('skynet.mat','net')
     end
     
-    p=26.2354; %costante di trend
+    p=25.2578; %costante di trend
     d_hat=net([d h]')+p;
 end
 end

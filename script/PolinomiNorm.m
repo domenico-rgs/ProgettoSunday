@@ -8,7 +8,7 @@ x1_id=(x1_id-mean(x1_id))/std(x1_id);
 x2_id=(x2_id-mean(x2_id))/std(x2_id);
 x1_val=(x1_val-mean(x1_val))/std(x1_val);
 x2_val=(x2_val-mean(x2_val))/std(x2_val);
-[X1,X2] = meshgrid(linspace(-2,2,365), linspace(-2,2,24));
+[X1,X2] = meshgrid(linspace(min(x1_id),max(x1_id),365), linspace(min(x2_id),max(x2_id),24));
 
 %% Modello bidimensionale (polinomio terzo grado)
 phi_B=[ones(n,1) x1_id x2_id x1_id.^2 x2_id.^2 x1_id.*x2_id x1_id.^3 x2_id.^3 (x1_id.^2).*x2_id (x1_id).*(x2_id.^2)];
